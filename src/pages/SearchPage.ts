@@ -5,8 +5,8 @@ import {
 } from '@common/constants'
 import logger from '@common/logger'
 import { Helpers } from '../utils/helpers'
-import { searchpageSelectors } from 'selectors/searchpageSelectors'
-import { commonSelectors } from 'selectors/commonSelectors'
+import { searchpageSelectors } from '@selectors/searchpageSelectors'
+import { commonSelectors } from '@selectors/commonSelectors'
 
 export class SearchPage {
     static async checkNoFlightFound(page) {

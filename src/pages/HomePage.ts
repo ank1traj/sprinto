@@ -10,8 +10,8 @@ import {
     NO_ARRIVAL_DEPARTURE_ERROR_MESSAGE,
 } from '@common/constants'
 import { expect } from '@playwright/test'
-import { commonSelectors } from 'selectors/commonSelectors'
-import { homepageSelectors } from 'selectors/homepageSelectors'
+import { commonSelectors } from '@selectors/commonSelectors'
+import { homepageSelectors } from '@selectors/homepageSelectors'
 
 export class HomePage {
     static async closeLoginBanner(page) {

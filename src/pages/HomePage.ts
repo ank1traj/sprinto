@@ -9,12 +9,13 @@ import {
     NO_DEPARTURE_ERROR_MESSAGE,
     NO_ARRIVAL_DEPARTURE_ERROR_MESSAGE,
 } from '@common/constants'
-import { expect } from '@playwright/test'
+import { PASSENGER_COUNT_REGEX } from '@common/regex'
+import { Page, expect } from '@playwright/test'
 import { commonSelectors } from '@selectors/commonSelectors'
 import { homepageSelectors } from '@selectors/homepageSelectors'
 
 export class HomePage {
-    static async closeLoginBanner(page) {
+    static async closeLoginBanner(page: Page): Promise<void> {
         try {
             const loginBannerLocator = page.locator(commonSelectors.loginBanner)
             await expect(loginBannerLocator).toBeVisible()
@@ -25,7 +26,11 @@ export class HomePage {
         }
     }
 
-    static async searchWhereFrom(page, whereFrom, whereFromAirport) {
+    static async searchWhereFrom(
+        page: Page,
+        whereFrom: string,
+        whereFromAirport: string
+    ): Promise<void> {
         await page.getByPlaceholder('Where from?').click()
         await page.getByPlaceholder('Where from?').fill(whereFrom)
         await page.waitForTimeout(2000)
@@ -49,7 +54,11 @@ export class HomePage {
         await page.getByText(departureAirport).click()
     }
 
-    static async searchWhereTo(page, whereTo, whereToAirport) {
+    static async searchWhereTo(
+        page: Page,
+        whereTo: string,
+        whereToAirport: string
+    ): Promise<void> {
         await page.getByPlaceholder('Where to?').click()
         await page.getByPlaceholder('Where to?').fill(whereTo)
         await page.waitForTimeout(2000)
@@ -73,19 +82,16 @@ export class HomePage {
         await page.getByText(returnAirport).click()
     }
 
-    static async selectDepartureDate(page, desiredDate?: string) {
+    static async selectDepartureDate(
+        page: Page,
+        desiredDate?: string
+    ): Promise<void> {
         let desiredDepartureMonth, desiredDepartureDay
 
         if (desiredDate) {
             const dateObject = new Date(desiredDate)
-            desiredDepartureMonth = dateObject.toLocaleString('en-US', {
-                month: 'long',
-                year: 'numeric',
-            })
-            desiredDepartureDay = dateObject.toLocaleString('en-US', {
-                month: 'short',
-                day: 'numeric',
-            })
+            desiredDepartureMonth = Helpers.getLongMonthYearFormat(dateObject)
+            desiredDepartureDay = Helpers.getShortMonthDayFormat(dateObject)
         } else {
             desiredDepartureMonth = Helpers.getDesiredDepartureMonth()
             desiredDepartureDay = Helpers.getDesiredDepartureDay()
@@ -105,19 +111,16 @@ export class HomePage {
         await page.getByLabel(desiredDepartureDay).click()
     }
 
-    static async selectReturnDate(page, desiredDate?: string) {
+    static async selectReturnDate(
+        page: Page,
+        desiredDate?: string
+    ): Promise<void> {
         let desiredReturnMonth, desiredReturnDay
 
         if (desiredDate) {
             const dateObject = new Date(desiredDate)
-            desiredReturnMonth = dateObject.toLocaleString('en-US', {
-                month: 'long',
-                year: 'numeric',
-            })
-            desiredReturnDay = dateObject.toLocaleString('en-US', {
-                month: 'short',
-                day: 'numeric',
-            })
+            desiredReturnMonth = Helpers.getLongMonthYearFormat(dateObject)
+            desiredReturnDay = Helpers.getShortMonthDayFormat(dateObject)
         } else {
             desiredReturnMonth = Helpers.getDesiredReturnMonth()
             desiredReturnDay = Helpers.getDesiredReturnDay()
@@ -142,7 +145,10 @@ export class HomePage {
         await page.locator(homepageSelectors.searcHButton).click()
     }
 
-    static async changeTravelWay(page, desiredWay) {
+    static async changeTravelWay(
+        page: Page,
+        desiredWay: string
+    ): Promise<void> {
         const currentWay = await page
             .locator(homepageSelectors.oneWayOrRoundTrip)
             .textContent()
@@ -164,7 +170,10 @@ export class HomePage {
         }
     }
 
-    static async customizeFlightOptions(page, desiredClassType?: string) {
+    static async customizeFlightOptions(
+        page: Page,
+        desiredClassType?: string
+    ): Promise<void> {
         await page.locator(homepageSelectors.travelDetails).click()
         this.changePassengerCount(
             page,
@@ -190,7 +199,10 @@ export class HomePage {
         )
     }
 
-    static async selectTravelClass(page, classText) {
+    static async selectTravelClass(
+        page: Page,
+        classText: string
+    ): Promise<void> {
         const travelClassSelector = homepageSelectors.travelClass.replace(
             '${classText}',
             classText
@@ -206,11 +218,11 @@ export class HomePage {
     }
 
     static async changePassengerCount(
-        page,
-        desiredAdultsCount,
-        desiredChildrenCount,
-        desiredInfantsCount
-    ) {
+        page: Page,
+        desiredAdultsCount: number,
+        desiredChildrenCount: number,
+        desiredInfantsCount: number
+    ): Promise<void> {
         if (desiredAdultsCount > 9) {
             logger.error('Then number of adults should not exceed 9')
             return
@@ -241,7 +253,7 @@ export class HomePage {
             .locator(infantsSelector)
             .textContent()
 
-        const regex = /\)\s*(\d+)$/
+        const regex = PASSENGER_COUNT_REGEX
         const adultsMatch = adultCountDetails.match(regex)
         const childrenMatch = childrenCountDetails.match(regex)
         const infantsMatch = infantsCountDetails.match(regex)
@@ -331,12 +343,12 @@ export class HomePage {
     }
 
     static async getFlightDetailsAfterCustomization(
-        page,
-        desiredAdultsCount,
-        desiredChildrenCount,
-        desiredInfantsCount,
-        desiredClassType
-    ) {
+        page: Page,
+        desiredAdultsCount: number,
+        desiredChildrenCount: number,
+        desiredInfantsCount: number,
+        desiredClassType: string
+    ): Promise<void> {
         const flightDetails = await page
             .locator(homepageSelectors.flightCustomizationDetails)
             .textContent()
@@ -350,7 +362,7 @@ export class HomePage {
         expect(flightDetails).toBe(expectedFlightDetails)
     }
 
-    static async searchFlightWithoutArrival(page) {
+    static async searchFlightWithoutArrival(page: Page): Promise<void> {
         await page.locator(homepageSelectors.searcHButton)
         const expectedMessage = await page
             .locator(homepageSelectors.searchWithoutArrival)
@@ -358,7 +370,7 @@ export class HomePage {
         expect(expectedMessage).toBe(NO_ARRIVAL_ERROR_MESSAGE)
     }
 
-    static async searchFlightWithoutDeparture(page) {
+    static async searchFlightWithoutDeparture(page: Page): Promise<void> {
         await page.locator(homepageSelectors.searcHButton)
         const expectedMessage = await page
             .locator(homepageSelectors.searchWithoutDeparture)
@@ -366,7 +378,9 @@ export class HomePage {
         expect(expectedMessage).toBe(NO_DEPARTURE_ERROR_MESSAGE)
     }
 
-    static async searchFlightWithoutArrivalAndDeparture(page) {
+    static async searchFlightWithoutArrivalAndDeparture(
+        page: Page
+    ): Promise<void> {
         await page.locator(homepageSelectors.searcHButton)
         const expectedMessage = await page
             .locator(homepageSelectors.searchWithoutArrivalAndDeparture)

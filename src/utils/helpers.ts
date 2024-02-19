@@ -1,4 +1,5 @@
 import logger from '@common/logger'
+import { Page } from 'playwright-core'
 
 export class Helpers {
     static getCurrentMonthAndYear(): string {
@@ -15,7 +16,7 @@ export class Helpers {
     }
 
     static getDesiredReturnMonth(): string {
-        return this.getDesiredDepartureMonth() // Assuming both are the same
+        return this.getDesiredDepartureMonth()
     }
 
     static getDesiredDepartureDay(): string {
@@ -34,7 +35,21 @@ export class Helpers {
         return `${returnDate.toLocaleString('en-US', { month: 'short' })} ${day}`
     }
 
-    static getRandomClassType(classTypes) {
+    static getLongMonthYearFormat(date: Date): string {
+        return date.toLocaleString('en-US', {
+            month: 'long',
+            year: 'numeric',
+        })
+    }
+
+    static getShortMonthDayFormat(date: Date): string {
+        return date.toLocaleString('en-US', {
+            month: 'short',
+            day: 'numeric',
+        })
+    }
+
+    static getRandomClassType(classTypes: string[]): string {
         const randomIndex: number = Math.floor(
             Math.random() * classTypes.length
         )
@@ -51,7 +66,10 @@ export class Helpers {
         return template
     }
 
-    static async scrollUntilSelectorFound(page, selector) {
+    static async scrollUntilSelectorFound(
+        page: Page,
+        selector: string
+    ): Promise<void> {
         for (let i = 0; i < 100; i++) {
             await page.evaluate(() => {
                 window.scrollBy(0, window.innerHeight)

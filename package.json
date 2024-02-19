@@ -1,0 +1,23 @@
+{
+  "name": "sprinto",
+  "version": "1.0.0",
+  "description": "a test framework for sprinto interview",
+  "main": "index.js",
+  "scripts": {
+    "browserstack": "npx browserstack-node-sdk playwright test --config=./playwright.local.config.ts",
+    "test": "npx playwright test tests",
+    "postinstall": "npm update browserstack-node-sdk"
+  },
+  "keywords": [],
+  "author": "Ankit Raj",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.41.2",
+    "@types/node": "^20.11.19",
+    "browserstack-local": "^1.5.1",
+    "browserstack-node-sdk": "^1.31.20"
+  },
+  "dependencies": {
+    "winston": "^3.11.0"
+  }
+}

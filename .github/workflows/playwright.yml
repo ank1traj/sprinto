@@ -1,0 +1,54 @@
+name: Playwright Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: npx playwright test --project firefox
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Send email with Playwright test report
+        if: always()  # Ensure this step always runs
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.NYLAS_API_KEY }}" \
+            -d '{
+              "to": ${{secrets.TO_EMAIL}},
+              "subject": "Playwright Test Report",
+              "body": "Attached is the Playwright test report.",
+              "files": [
+                {
+                  "filename": "playwright-report.zip",
+                  "content": "'"$(base64 -w 0 playwright-report/*)"'",
+                  "encoding": "base64"
+                }
+              ]
+            }' \
+            "https://api.eu.nylas.com/v3/grants/e01e1b78-d12a-4662-9103-cb0ecfde69b0/messages/send"
+        env:
+          NYLAS_API_KEY: ${{ secrets.NYLAS_API_KEY }}

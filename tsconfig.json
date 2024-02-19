@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "esModuleInterop": true,
+      "resolveJsonModule": true,
+      "baseUrl": "./src",
+      "paths": {
+        "@common/*": ["common/*"],
+        "@fixtures/*": ["fixtures/*"],
+        "@pages/*":["pages/*"],
+        "@utils/*": ["utils/*"]
+      }
+    }
+  }

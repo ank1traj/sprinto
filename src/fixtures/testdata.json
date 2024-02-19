@@ -1,0 +1,19 @@
+{
+    "urls": {
+        "baseURL": "https://www.cleartrip.com/"
+    },
+    "departureDate": "2024-03-24",
+    "returnDate": "2024-03-30",
+    "whereFrom": "B",
+    "whereTo": "Del",
+    "WhereFromAirport": "Bangalore",
+    "WhereToAirport": "Delhi",
+    "wrongWhereFromAirport": "Bareilly",
+    "oneWay": "One way",
+    "roundTrip": "Round trip",
+    "desiredWay": "Round trip",
+    "adultsCount": 2,
+    "childrenCount": 2,
+    "infantsCount": 2,
+    "classType": "Economy"
+}

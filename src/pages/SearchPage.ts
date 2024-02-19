@@ -4,7 +4,7 @@ import {
     PLEASE_TRY_AGAIN_MESSAGE,
 } from '@common/constants'
 import logger from '@common/logger'
-import { Helpers } from '../utils/helpers'
+import { Helpers } from '@utils/helpers'
 import { searchpageSelectors } from '@selectors/searchpageSelectors'
 import { commonSelectors } from '@selectors/commonSelectors'
 

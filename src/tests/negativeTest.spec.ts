@@ -24,7 +24,7 @@ test.describe('negative testcase', () => {
         }
     });
 
-    test.only('search flight without arrival', async ({ page }) => {
+    test('search flight without arrival', async ({ page }) => {
         try {
             await HomePage.searchWhereFrom(page, testdata.whereFrom, testdata.WhereFromAirport)
             await HomePage.searchFlight(page)
@@ -37,7 +37,7 @@ test.describe('negative testcase', () => {
         }
     });
 
-    test.only('search flight without departure', async ({ page }) => {
+    test('search flight without departure', async ({ page }) => {
         try {
             await HomePage.searchWhereTo(page, testdata.whereTo, testdata.WhereToAirport)
             await HomePage.searchFlight(page)

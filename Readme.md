@@ -24,8 +24,8 @@ This repository contains an end-to-end testing framework using Playwright. The s
        └── homePageSelectors.ts     # Selectors for elements on the home page
        └── searchPageSelectors.ts   # Selectors for elements on the search page
     ├── tests                       # Test scripts
-    └── negativeTest.spec.ts        # Test script for negative scenarios
-    └── positiveTest.spec.ts        # Test script for positive scenarios
+        └── negativeTest.spec.ts    # Test script for negative scenarios
+        └── positiveTest.spec.ts    # Test script for positive scenarios
     ├── utils
        └── helper.ts                # Helper functions
     ├── .gitignore                  # Git ignore file

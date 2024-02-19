@@ -4,36 +4,36 @@ This repository contains an end-to-end testing framework using Playwright. The s
 
 ## Folder Structure
 
-    ├── github/                     # GitHub Actions workflow
-        └── browserstack.yml        # GitHub Actions for browserstack
-        └── playwright.yml          # GitHub Actions for playwright
-    ├── src/                        # Source code
-       └── common/                  # Common utilities and helper functions
-          └── helpers.ts            # General utility functions
-          └── loggeer.ts            # Logging utility
-       └── fixtures/                # Test data and fixtures
-          └── testdata.json         # JSON file containing test data
-    ├── pages/                      # Page objects representing different pages
-       └── BasePage.ts              # Base page object with common functionality
-       └── BookingPage.ts           # Page object for the booking page
-       └── HomePage.ts              # Page object for the home page
-       └── SearchPage.ts            # Page object for the search page
-    ├── selectors                   # Selectors for locating elements on pages
-       └── bookingPageSelectors.ts  # Selectors for elements on the booking page
-       └── commonSelectors.ts       # Common selectors used across pages
-       └── homePageSelectors.ts     # Selectors for elements on the home page
-       └── searchPageSelectors.ts   # Selectors for elements on the search page
-    ├── tests                       # Test scripts
-        └── negativeTest.spec.ts    # Test script for negative scenarios
-        └── positiveTest.spec.ts    # Test script for positive scenarios
-    ├── utils
-       └── helper.ts                # Helper functions
-    ├── .gitignore                  # Git ignore file
-    ├── browserstack.yml            # BrowserStack configuration file
-    ├── package.json                # Node.js package configuration
-    ├── playwright.config.ts        # Playwright configuration file
-    ├── playwright.local.config.ts  # Local Playwright configuration file
-    ├── tsconfig.json               # TypeScript configuration file
+    ├── github/                         # GitHub Actions workflow
+        └── browserstack.yml            # GitHub Actions for browserstack
+        └── playwright.yml              # GitHub Actions for playwright
+    ├── src/                            # Source code
+       └── common/                      # Common utilities and helper functions
+          └── helpers.ts                # General utility functions
+          └── loggeer.ts                # Logging utility
+       └── fixtures/                    # Test data and fixtures
+          └── testdata.json             # JSON file containing test data
+       └── pages/                       # Page objects representing different pages
+           └── BasePage.ts              # Base page object with common functionality
+           └── BookingPage.ts           # Page object for the booking page
+           └── HomePage.ts              # Page object for the home page
+           └── SearchPage.ts            # Page object for the search page
+       └── selectors                    # Selectors for locating elements on pages
+           └── bookingPageSelectors.ts  # Selectors for elements on the booking page
+           └── commonSelectors.ts       # Common selectors used across pages
+           └── homePageSelectors.ts     # Selectors for elements on the home page
+           └── searchPageSelectors.ts   # Selectors for elements on the search page
+       └── tests                        # Test scripts
+            └── negativeTest.spec.ts    # Test script for negative scenarios
+            └── positiveTest.spec.ts    # Test script for positive scenarios
+        └── utils
+           └── helper.ts                # Helper functions
+    ├── .gitignore                      # Git ignore file
+    ├── browserstack.yml                # BrowserStack configuration file
+    ├── package.json                    # Node.js package configuration
+    ├── playwright.config.ts            # Playwright configuration file
+    ├── playwright.local.config.ts      # Local Playwright configuration file
+    ├── tsconfig.json                   # TypeScript configuration file
 
 ## Test Cases
 

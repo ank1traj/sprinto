@@ -36,67 +36,73 @@ This repository contains an end-to-end testing framework using Playwright. The s
     ├── tsconfig.json               # TypeScript configuration file
 
 ## Test Cases
-   ### Postive test cases
-   - search flight with one way
-   - search flight with round trip
-   - search flight with round trip with custom date
-   - search flight with round trip with customisation
 
-   ### Negative test cases
-   - search flight without arrival and departure
-   - search flight without arrival
-   - search flight without departure
-   - search flight with round trip without any flights
+### Postive test cases
+
+-   search flight with one way
+-   search flight with round trip
+-   search flight with round trip with custom date
+-   search flight with round trip with customisation
+
+### Negative test cases
+
+-   search flight without arrival and departure
+-   search flight without arrival
+-   search flight without departure
+-   search flight with round trip without any flights
 
 ## Getting Started
 
 1. **Clone this repository:**
 
-   ```bash
-   git clone https://github.com/ank1traj/sprinto.git
-   cd sprinto
-   ```
+    ```bash
+    git clone https://github.com/ank1traj/sprinto.git
+    cd sprinto
+    ```
+
 2. **Install dependencies:**
-   ```bash
-   yarn install
-   ```
+    ```bash
+    yarn install
+    ```
 3. **Running Tests Locally**
-    Execute the following command to run the tests locally:
+   Execute the following command to run the tests locally:
     ```bash
     yarn test
     ```
 4. **Running Tests on BrowserStack**
-    To run tests on BrowserStack for cross-browser testing:
+   To run tests on BrowserStack for cross-browser testing:
 
     - Configure BrowserStack Credentials:
 
     - Update your BrowserStack credentials in the `browserstack.yml` file.
 
     Run BrowserStack Tests:
+
     ```bash
     yarn browserstack
     ```
+
     This command will execute the tests on BrowserStack using the specified configuration.
 
-
 ## Additional Commands
+
 Feel free to use any of the following commands supported by Playwright. See the Playwright [documentation](https://playwright.dev/docs/running-tests) for more details.
 
-
 # GitHub Actions Workflow
+
 The workflow defined in the github/ folder automates the execution of tests using GitHub Actions. After the tests are run, it sends an email notification. Ensure you have configured the necessary secrets in your GitHub repository for email notifications.
 
 # Configuration
+
 The configuration for Playwright is located in `playwright.config.ts`.
 Additional configurations can be adjusted in `tsconfig.json`, `browserstack.yml`, etc.
 
 # BrowserStack Integration
+
 If you plan to use BrowserStack for cross-browser testing, configure the credentials and settings in `browserstack.yml`. Ensure that your BrowserStack username and access key are set as environment variables.
 
 This project is licensed under the MIT License.
 
-
 ## Authors
 
-- [@ank1traj](https://www.github.com/ank1traj)
-
+-   [@ank1traj](https://www.github.com/ank1traj)

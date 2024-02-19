@@ -1,23 +1,34 @@
 {
-  "name": "sprinto",
-  "version": "1.0.0",
-  "description": "a test framework for sprinto interview",
-  "main": "index.js",
-  "scripts": {
-    "browserstack": "npx browserstack-node-sdk playwright test --config=./playwright.local.config.ts",
-    "test": "npx playwright test tests",
-    "postinstall": "npm update browserstack-node-sdk"
-  },
-  "keywords": [],
-  "author": "Ankit Raj",
-  "license": "ISC",
-  "devDependencies": {
-    "@playwright/test": "^1.41.2",
-    "@types/node": "^20.11.19",
-    "browserstack-local": "^1.5.1",
-    "browserstack-node-sdk": "^1.31.20"
-  },
-  "dependencies": {
-    "winston": "^3.11.0"
-  }
+    "name": "sprinto",
+    "version": "1.0.0",
+    "description": "a test framework for sprinto interview",
+    "main": "index.js",
+    "scripts": {
+        "browserstack": "npx browserstack-node-sdk playwright test --config=./playwright.local.config.ts",
+        "test": "npx playwright test tests",
+        "postinstall": "npm update browserstack-node-sdk",
+        "prepare": "husky install",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "prettier": "prettier . --check",
+        "prettier:fix": "prettier . --write"
+    },
+    "keywords": [],
+    "author": "Ankit Raj",
+    "license": "ISC",
+    "devDependencies": {
+        "@playwright/test": "^1.41.2",
+        "@types/node": "^20.11.19",
+        "@typescript-eslint/eslint-plugin": "^7.0.1",
+        "@typescript-eslint/parser": "^7.0.1",
+        "browserstack-local": "^1.5.1",
+        "browserstack-node-sdk": "^1.31.20",
+        "eslint": "^8.56.0",
+        "eslint-config-prettier": "^9.1.0",
+        "typescript": "^5.3.3",
+        "husky": "^8.0.0"
+    },
+    "dependencies": {
+        "winston": "^3.11.0"
+    }
 }

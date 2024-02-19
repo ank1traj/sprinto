@@ -27,10 +27,10 @@ buildIdentifier: '#${BUILD_NUMBER}' # Supports strings along with either/both ${
 # Platforms object contains all the browser / device combinations you want to test on.
 # Entire list available here -> (https://www.browserstack.com/list-of-browsers-and-platforms/automate)
 platforms:
-  - os: OS X
-    osVersion: Ventura
-    browserName: playwright-firefox
-    browserVersion: latest
+    - os: OS X
+      osVersion: Ventura
+      browserName: playwright-firefox
+      browserVersion: latest
 # =======================
 # Parallels per Platform
 # =======================
@@ -51,9 +51,9 @@ parallelsPerPlatform: 1
 browserstackLocal: true # <boolean> (Default false)
 # browserStackLocalOptions:
 # Options to be passed to BrowserStack local in-case of advanced configurations
-  # localIdentifier: # <string> (Default: null) Needed if you need to run multiple instances of local.
-  # forceLocal: true  # <boolean> (Default: false) Set to true if you need to resolve all your traffic via BrowserStack Local tunnel.
-  # Entire list of arguments available here -> https://www.browserstack.com/docs/automate/selenium/manage-incoming-connections
+# localIdentifier: # <string> (Default: null) Needed if you need to run multiple instances of local.
+# forceLocal: true  # <boolean> (Default: false) Set to true if you need to resolve all your traffic via BrowserStack Local tunnel.
+# Entire list of arguments available here -> https://www.browserstack.com/docs/automate/selenium/manage-incoming-connections
 
 # ===================
 # Debugging features

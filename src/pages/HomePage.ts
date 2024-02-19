@@ -19,8 +19,16 @@ export class HomePage {
         try {
             const loginBannerLocator = page.locator(commonSelectors.loginBanner)
             await expect(loginBannerLocator).toBeVisible()
+
+            const closeIconLocator = page.locator(
+                commonSelectors.loginBannerCloseIcon
+            )
+            if (await closeIconLocator.isVisible()) {
+                await closeIconLocator.click()
+            } else {
+                await page.mouse.click(0, 0)
+            }
             logger.info('Closed the login banner successfully.')
-            await page.locator(commonSelectors.loginBannerCloseIcon).click()
         } catch (error) {
             logger.info('No login banner appeared or it was not visible.')
         }

@@ -6,6 +6,7 @@
     "scripts": {
         "browserstack": "npx browserstack-node-sdk playwright test --config=./playwright.local.config.ts",
         "test": "npx playwright test tests",
+        "test-visual": "npx playwright test tests --headed --project firefox",
         "postinstall": "npm update browserstack-node-sdk",
         "prepare": "husky install",
         "lint": "eslint .",

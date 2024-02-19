@@ -97,7 +97,6 @@ export class HomePage {
             .locator(homepageSelectors.departureMonth)
             .textContent()
         while (currentMonth.trim() != desiredDepartureMonth) {
-            console.log(currentMonth.trim(), desiredDepartureMonth)
             await page.click(homepageSelectors.rightIcon, { force: true })
             currentMonth = await page
                 .locator(homepageSelectors.departureMonth)
@@ -173,16 +172,16 @@ export class HomePage {
             testData.childrenCount,
             testData.infantsCount
         )
-        let classType
+        let classType: string
         if (desiredClassType) {
             classType = desiredClassType
             this.selectTravelClass(page, classType)
         } else {
-            const classType: string = Helpers.getRandomClassType(CLASS_TYPES)
-            this.selectTravelClass(page, classType)
+            classType = Helpers.getRandomClassType(CLASS_TYPES)
+            await this.selectTravelClass(page, classType)
         }
-        await page.waitForTimeout(1000)
-        this.getFlightDetailsAfterCustomization(
+        await page.waitForTimeout(2000)
+        await this.getFlightDetailsAfterCustomization(
             page,
             testData.adultsCount,
             testData.childrenCount,

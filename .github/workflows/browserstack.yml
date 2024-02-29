@@ -2,8 +2,6 @@ name: Playwright Tests on Browserstack
 
 on:
     workflow_dispatch:
-    schedule:
-        - cron: '0 */3 * * *' # Run every 30 minutes
     push:
         branches: [main, master]
     pull_request:
